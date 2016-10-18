@@ -333,13 +333,11 @@ class Model(with_metaclass(ModelMeta, event.HasEvents)):
     
     def __init__(self, *init_args, **kwargs):
         
-        # Pop args that we need from the kwargs (because legacy Python does
-        # not support keyword args after *args).
+        # Pop args that we need from the kwargs (because legacy Python does not
+        # support keyword args after *args). Param "is_app" is not used here,
+        # but we "take" the argument so it is not mistaken for a property value.
         session = kwargs.pop('session', None)
         is_app = kwargs.pop('is_app', None)
-        
-        # Param "is_app" is not used, but we "take" the argument so it
-        # is not mistaken for a property value.
         
         # Set id and register this instance
         Model._counter += 1
